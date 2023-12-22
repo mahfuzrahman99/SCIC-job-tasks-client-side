@@ -1,0 +1,162 @@
+[
+    {
+      "title": "Finish Project Proposal",
+      "description": "Write a detailed project proposal for the upcoming client meeting.",
+      "deadline": "2023-02-15",
+      "priority": "high",
+      "backgroundColor": "#EA3A77",
+      "status": "to-do"
+    },
+    {
+      "title": "Meeting with Team",
+      "description": "Discuss project progress and assign tasks to team members.",
+      "deadline": "2023-02-10",
+      "priority": "moderate",
+      "backgroundColor": "#FF02F0",
+      "status": "to-do"
+    },
+    {
+      "title": "Update Website Content",
+      "description": "Review and update the content on the company website.",
+      "deadline": "2023-02-20",
+      "priority": "low",
+      "backgroundColor": "#AA6AE2",
+      "status": "to-do"
+    },
+    {
+      "title": "Prepare Presentation",
+      "description": "Create a presentation for the client meeting next week.",
+      "deadline": "2023-02-18",
+      "priority": "high",
+      "backgroundColor": "#EA3A77",
+      "status": "to-do"
+    },
+    {
+      "title": "Monthly Report",
+      "description": "Compile and send out the monthly performance report to stakeholders.",
+      "deadline": "2023-02-28",
+      "priority": "moderate",
+      "backgroundColor": "#FF02F0",
+      "status": "to-do"
+    },
+    {
+      "title": "Review Budget",
+      "description": "Review and update the project budget for the next quarter.",
+      "deadline": "2023-02-25",
+      "priority": "low",
+      "backgroundColor": "#AA6AE2",
+      "status": "to-do"
+    },
+    {
+      "title": "Client Follow-up",
+      "description": "Follow up with the client to gather additional requirements.",
+      "deadline": "2023-02-12",
+      "priority": "high",
+      "backgroundColor": "#EA3A77",
+      "status": "to-do"
+    },
+    {
+      "title": "Bug Fixes",
+      "description": "Address and fix critical bugs reported by users.",
+      "deadline": "2023-02-22",
+      "priority": "moderate",
+      "backgroundColor": "#FF02F0",
+      "status": "to-do"
+    },
+    {
+      "title": "Content Marketing Plan",
+      "description": "Develop a content marketing plan for the next quarter.",
+      "deadline": "2023-02-28",
+      "priority": "low",
+      "backgroundColor": "#AA6AE2",
+      "status": "to-do"
+    },
+    {
+      "title": "Team Building Workshop",
+      "description": "Plan and organize a team-building workshop for the department.",
+      "deadline": "2023-03-05",
+      "priority": "high",
+      "backgroundColor": "#EA3A77",
+      "status": "to-do"
+    },
+    {
+      "title": "Product Launch",
+      "description": "Successfully launched the new product into the market.",
+      "deadline": "2023-04-10",
+      "priority": "high",
+      "backgroundColor": "#EA3A77",
+      "status": "complete"
+    },
+    {
+      "title": "Website Redesign",
+      "description": "Completed the redesign of the company website for better user experience.",
+      "deadline": "2023-04-15",
+      "priority": "moderate",
+      "backgroundColor": "#FF02F0",
+      "status": "complete"
+    },
+    {
+      "title": "Customer Feedback Analysis",
+      "description": "Analyzed and implemented improvements based on customer feedback.",
+      "deadline": "2023-04-20",
+      "priority": "low",
+      "backgroundColor": "#AA6AE2",
+      "status": "complete"
+    },
+    {
+      "title": "Team Project Completion",
+      "description": "Successfully completed the collaborative project with the team.",
+      "deadline": "2023-04-25",
+      "priority": "high",
+      "backgroundColor": "#EA3A77",
+      "status": "complete"
+    },
+    {
+      "title": "Training Program Conclusion",
+      "description": "Concluded the training program with positive participant feedback.",
+      "deadline": "2023-04-30",
+      "priority": "moderate",
+      "backgroundColor": "#FF02F0",
+      "status": "complete"
+    },
+    {
+      "title": "Software Development",
+      "description": "Develop new features for the upcoming software release.",
+      "deadline": "2023-05-15",
+      "priority": "high",
+      "backgroundColor": "#EA3A77",
+      "status": "ongoing"
+    },
+    {
+      "title": "Marketing Campaign",
+      "description": "Execute ongoing marketing campaigns to increase brand awareness.",
+      "deadline": "2023-05-20",
+      "priority": "moderate",
+      "backgroundColor": "#FF02F0",
+      "status": "ongoing"
+    },
+    {
+      "title": "Research Project",
+      "description": "Conduct ongoing research on industry trends and competitor analysis.",
+      "deadline": "2023-05-25",
+      "priority": "low",
+      "backgroundColor": "#AA6AE2",
+      "status": "ongoing"
+    },
+    {
+      "title": "Customer Support",
+      "description": "Provide ongoing support to customers and address their inquiries.",
+      "deadline": "2023-05-30",
+      "priority": "high",
+      "backgroundColor": "#EA3A77",
+      "status": "ongoing"
+    },
+    {
+      "title": "Training Sessions",
+      "description": "Organize ongoing training sessions for team skill development.",
+      "deadline": "2023-06-05",
+      "priority": "moderate",
+      "backgroundColor": "#FF02F0",
+      "status": "ongoing"
+    }
+  ]
