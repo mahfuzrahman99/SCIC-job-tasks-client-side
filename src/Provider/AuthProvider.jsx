@@ -63,46 +63,11 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-    //   const userEmail = currentUser?.email || user?.email;
-    //   const loggedUser = { email: userEmail };
       setUser(currentUser);
 
-      // JWT post using local storage
       if (currentUser) {
         setLoading(false);
-        // get token and store client
-        // axiosPublic.post("/jwt", loggedUser,{withCredentials: true,}).then((res) => {
-        //   console.log(res.data.token);
-        //   if (res.data.token) {
-        //     localStorage.setItem("access-token", res.data.token);
-        //     setLoading(false);
-        //   }
-        // });
-      } else {
-        // localStorage.removeItem("access-token");
-        // setLoading(false);
       }
-
-      // JWT post using cookies
-      // if (currentUser) {
-      //   axiosPublic
-      //     .post("/jwt", loggedUser, {
-      //       withCredentials: true,
-      //     })
-      //     .then((res) => {
-      //       console.log("Token Response", res.data);
-      //       setLoading(false);
-      //     });
-      // } else {
-      //   axiosPublic
-      //     .post("/logOut", loggedUser, {
-      //       withCredentials: true,
-      //     })
-      //     .then((res) => {
-      //       console.log(res.data);
-      //       setLoading(false);
-      //     });
-      // }
     });
     return () => {
       return unSubscribe();

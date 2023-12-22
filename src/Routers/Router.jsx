@@ -8,6 +8,8 @@ import UserProfile from "../Pages/Dashboard/UserProfile";
 import CreateTask from "../Pages/Dashboard/CreateTask";
 import AllTasks from "../Pages/Dashboard/AllTasks";
 import Outlets from "../Layouts/Outlets";
+import PrivetRout from "../Components/PrivetRout";
+// import PrivetRout from "../Components/PrivetRout";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,7 @@ const router = createBrowserRouter([
   },
   {
     path:"dashboard",
-    element:<UserDashboard/>,
+    element:<PrivetRout><UserDashboard/></PrivetRout>,
     children:[
       {
         path:"user_profile",

@@ -54,23 +54,10 @@ const Login = () => {
           const user = { email };
           axios
             .post(
-              "http://localhost:5173",
+              "https://task-management-server-side-gold.vercel.app",
               user,
-              { withCredentials: true }
             )
             .then(() => {
-            //   if (res.data) {
-            //     if (isOrganizer) {
-            //       swal("Success!", "Login Successfully!", "success");
-            //       navigate("/organizer/organizer_profile");
-            //     } else if (isParticipant) {
-            //       swal("Success!", "Login Successfully!", "success");
-            //       navigate("/participant/participant_profile");
-            //     } else if (isProfessional) {
-            //       swal("Success!", "Login Successfully!", "success");
-            //       navigate("/professional/professional_profile");
-            //     }
-            //   }
             navigate("/")
             });
         })
