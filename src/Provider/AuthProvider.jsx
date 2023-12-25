@@ -29,14 +29,12 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
 
-  const updateTheProfile = (name, picture, role) => {
+  const updateTheProfile = (name, picture) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: picture,
-      userRole:role,
     });
   };
-  console.log(user);
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);

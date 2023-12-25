@@ -2,8 +2,13 @@
 import { Link } from "react-router-dom";
 import BannerImage from "../../public/BannerHome.json"
 import Lottie from "lottie-react";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Banner = () => {
+
+    const {user} = useContext(AuthContext)
+
     return (
         <div className="rounded-b-2xl shadow-2xl shadow-[#00000040]">
             <div className="md:grid grid-cols-2 items-center gap-4 max-w-6xl mx-auto py-10 px-3 md:px-0">
@@ -15,7 +20,7 @@ const Banner = () => {
                     <p className="md:hidden">
                     The dynamic discipline of Tashk Management includes continual control, effective organization, motivational leadership, and strategic planning. It offers a flexible foundation for success in a variety of industries through productivity, creativity, and long-term viability. It adjusts to changes in technology and society.
                     </p>
-                    <Link to={"/dashboard/user_profile"} className="btn btn-ghost border-none bg-gray-300 hover:bg-red-400 md:w-4/12 text-black">Let’s Explore</Link>
+                    <Link to={user ? "/dashboard/user_profile" : "/login"} className="btn btn-ghost border-none bg-gray-300 hover:bg-red-400 md:w-4/12 text-black">Let’s Explore</Link>
                 </div>
                 <div className="col-span-1">
                     {/* <img src={BannerImg} className="h-full w-full" alt="" /> */}

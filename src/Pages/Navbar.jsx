@@ -4,33 +4,9 @@ import { Link, NavLink, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "react-photo-view/dist/react-photo-view.css";
 import { AuthContext } from "../Provider/AuthProvider";
-// import useUsers from "../../Hooks/useUsers";
-// import useAdmin from "../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-//   const [users] = useUsers();
-//   const [isAdmin] = useAdmin();
-//   const [isOrganizer, setOrganizer] = useState(false);
-//   const [isParticipant, setParticipant] = useState(false);
-//   const [isProfessional, setProfessional] = useState(false);
-
-//   useEffect(() => {
-//     const userRole = users.find((u) => u?.email === user?.email);
-//     console.log(userRole?.role);
-//     //Organizer
-//     if (userRole) {
-//       if (userRole.role === "Organizer") {
-//         setOrganizer(true); //Participant
-//       } else if (userRole.role === "Participant") {
-//         setParticipant(true); //Professionals
-//       } else if (userRole.role === "Professionals") {
-//         setProfessional(true);
-//       }
-//     }
-//   }, [user, users]);
-
-
 
   const navLinks = (
     <>

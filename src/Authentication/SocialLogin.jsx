@@ -17,15 +17,14 @@ const SocialLogin = ({ disabled }) => {
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then((res) => {
-        console.log(res.user);
         const userInfo = {
           email: res.user?.email,
           name: res.user?.displayName,
         };
-        navigate(location?.state ? location.state : "/");
+        // navigate(location?.state ? location.state : "/");
         axiosPublic.post("/users", userInfo).then(() => {
           swal("Success!", "Login Successfully!", "success");
-          navigate(location?.state ? location.state : "/");
+          navigate(location?.state ? location.state : "/dashboard/user_profile");
         });
       })
       .catch(() => {
@@ -42,7 +41,7 @@ const SocialLogin = ({ disabled }) => {
         };
         axiosPublic.post("/users", userInfo).then(() => {
           swal("Success!", "Login Successfully!", "success");
-          navigate(location?.state ? location.state : "/");
+          navigate(location?.state ? location.state : "/dashboard/user_profile");
         });
       })
       .catch(() => {

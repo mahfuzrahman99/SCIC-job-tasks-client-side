@@ -18,7 +18,6 @@ const ContactUs = () => {
   
       emailjs.sendForm('service_fsiuqse', 'template_k2ek7hd', form.current, '_Ry7faN3cOvUnjYMa')
         .then((result) => {
-            console.log(result.text);
             if(result.text){
               Swal.fire({
                   position: "top",

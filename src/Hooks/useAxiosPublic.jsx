@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://task-management-server-side-gold.vercel.app/",
+  // baseURL: "http://localhost:2000",
+  baseURL: "https://task-management-server-side-gold.vercel.app",
 });
 const useAxiosPublic = () => {
   return axiosPublic;

@@ -1,21 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { Link } from "react-router-dom";
-import { FiEye } from "react-icons/fi";
-import { FaPenNib } from "react-icons/fa";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
-import { useState } from "react";
-import UpdateTask from "./UpdateTask";
-import DetailsTask from "./DetailsTask";
-import { HashLoader } from "react-spinners";
-import { TiTick } from "react-icons/ti";
-import { useDrag } from "react-dnd";
+import { useDrop } from "react-dnd";
+import TaskCard from "./taskCard";
+import toast, { Toaster } from "react-hot-toast";
 
 const AllTasks = () => {
   const axiosPublic = useAxiosPublic();
-  const [showModal, setShowModal] = useState(false);
 
   const { data: tasks = [], refetch } = useQuery({
     queryKey: "tasks",
@@ -40,7 +32,6 @@ const AllTasks = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const res = await axiosPublic.delete(`/task/${item._id}`);
-        console.log(res.data);
         if (res.data.deletedCount > 0) {
           refetch();
           Swal.fire({
@@ -55,182 +46,100 @@ const AllTasks = () => {
     });
   };
 
+  const addItemToSection = (id, newStatus) => {
+    axiosPublic
+      .put(`/task/${id}`, { status: newStatus })
+      .then((data) => {
+        if (data.data.modifiedCount > 0) {
+          refetch()
+          toast.success("Task status changed", { duration: 2000 })
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating task:", error);
+      });
+  };
+
+  const [{ isOverToDo }, dropToDo] = useDrop(() => ({
+    accept: "task",
+    drop: (item) => addItemToSection(item.id, "to-do"),
+    collect: (monitor) => ({ isOver: !!monitor.isOver() }),
+  }));
+
+  const [{ isOverOnGoing }, dropOnGoing] = useDrop(() => ({
+    accept: "task",
+    drop: (item) => addItemToSection(item.id, "ongoing"),
+    collect: (monitor) => ({ isOver: !!monitor.isOver() }),
+  }));
+
+  const [{ isOverCompleted }, dropCompleted] = useDrop(() => ({
+    accept: "task",
+    drop: (item) => addItemToSection(item.id, "complete"),
+    collect: (monitor) => ({ isOver: !!monitor.isOver() }),
+  }));
+
   return (
     <div>
+      <Toaster toastOptions={{ style: { zIndex: "1000" } }} />
       <div className="max-w-5xl mx-auto md:grid grid-cols-3 gap-3 mt-10">
-        <div className="col-span-1  shadow-md shadow-[#8a8b8c]">
+        <div className="col-span-1  shadow-md shadow-[#8a8b8c]" ref={dropToDo}>
           <h1 className="bg-[#8a8b8c] p-2 rounded-tr-md rounded-tl-md text-center text-xl font-bold text-white">
             To-Do
           </h1>
           <ul className="p-3">
-            {todo.map((item, i) => (
-              <li
-                key={item._id}
-                className="flex items-center justify-between gap-2 p-2 border-b-2 border-[#8a8b8c]"
-              >
-                <span>{item.title}</span>
-                <div className="flex items-center justify-center gap-2">
-                  <div>
-                    <button
-                      onClick={() =>
-                        document.getElementById("my_modal_2").showModal()
-                      }
-                    >
-                      <span>
-                        <FiEye />
-                      </span>
-                    </button>
-                    <DetailsTask
-                      item={item}
-                      showModal={showModal}
-                      setShowModal={setShowModal}
-                    />
-                  </div>
-                  <div>
-                    <button
-                      onClick={() =>
-                        document.getElementById("my_modal_1").showModal()
-                      }
-                    >
-                      <span>
-                        <FaPenNib />
-                      </span>
-                    </button>
-                    <UpdateTask
-                      item={item}
-                      showModal={showModal}
-                      setShowModal={setShowModal}
-                    />
-                  </div>
-                  <Link onClick={() => handleItemDelete(item)}>
-                    <span>
-                      <RiDeleteBin6Line />
-                    </span>
-                  </Link>
-                </div>
-              </li>
-            ))}
+            <div>
+              {todo.map((task, i) => (
+                <TaskCard
+                  refetch={refetch}
+                  key={task._id}
+                  i={i}
+                  handleItemDelete={handleItemDelete}
+                  task={task}
+                />
+              ))}
+            </div>
           </ul>
         </div>
-        <div className="col-span-1  shadow-md shadow-[#8a8b8c]">
+        <div
+          className="col-span-1  shadow-md shadow-[#8a8b8c]"
+          ref={dropOnGoing}
+        >
           <h1 className="bg-[#8a8b8c] p-2 rounded-tr-md rounded-tl-md text-center text-xl font-bold text-white">
             Ongoing
           </h1>
           <ul className="p-3">
-            {ongoing.map((item, i) => (
-              <li
-                key={item._id}
-                className="flex items-center justify-between gap-2 p-2 border-b-2 border-[#8a8b8c]"
-              >
-                {item.title}
-                <div className="flex items-center justify-center gap-2">
-                  <HashLoader
-                    size={15}
-                    color="#8a8b8c"
-                    ariaLabel="bars-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                  />
-                  <div>
-                    <button
-                      onClick={() =>
-                        document.getElementById("my_modal_2").showModal()
-                      }
-                    >
-                      <span>
-                        <FiEye />
-                      </span>
-                    </button>
-                    <DetailsTask
-                      item={item}
-                      showModal={showModal}
-                      setShowModal={setShowModal}
-                    />
-                  </div>
-                  <div>
-                    <button
-                      onClick={() =>
-                        document.getElementById("my_modal_1").showModal()
-                      }
-                    >
-                      <span>
-                        <FaPenNib />
-                      </span>
-                    </button>
-                    <UpdateTask
-                      item={item}
-                      showModal={showModal}
-                      setShowModal={setShowModal}
-                    />
-                  </div>
-                  <Link onClick={() => handleItemDelete(item)}>
-                    <span>
-                      <RiDeleteBin6Line />
-                    </span>
-                  </Link>
-                </div>
-              </li>
-            ))}
+            <div>
+              {ongoing.map((task, i) => (
+                <TaskCard
+                  refetch={refetch}
+                  key={task._id}
+                  i={i}
+                  handleItemDelete={handleItemDelete}
+                  task={task}
+                />
+              ))}
+            </div>
           </ul>
         </div>
-        <div className="col-span-1  shadow-md shadow-[#8a8b8c]">
+        <div
+          className="col-span-1  shadow-md shadow-[#8a8b8c]"
+          ref={dropCompleted}
+        >
           <h1 className="bg-[#8a8b8c] p-2 rounded-tr-md rounded-tl-md text-center text-xl font-bold text-white">
             Complete
           </h1>
           <ul className="p-3">
-            {complete.map((item, i) => (
-              <li
-                key={item._id}
-                className="flex items-center justify-between gap-2 p-2 border-b-2 border-[#8a8b8c]"
-              >
-                {item.title}
-                <div className="flex items-center justify-center gap-2">
-                  <div>
-                    <span className="text-xl">
-                      <TiTick />
-                    </span>
-                  </div>
-                  <div>
-                    <button
-                      onClick={() =>
-                        document.getElementById("my_modal_2").showModal()
-                      }
-                    >
-                      <span>
-                        <FiEye />
-                      </span>
-                    </button>
-                    <DetailsTask
-                      item={item}
-                      showModal={showModal}
-                      setShowModal={setShowModal}
-                    />
-                  </div>
-                  <div>
-                    <button
-                      onClick={() =>
-                        document.getElementById("my_modal_1").showModal()
-                      }
-                    >
-                      <span>
-                        <FaPenNib />
-                      </span>
-                    </button>
-                    <UpdateTask
-                      item={item}
-                      showModal={showModal}
-                      setShowModal={setShowModal}
-                    />
-                  </div>
-                  <Link onClick={() => handleItemDelete(item)}>
-                    <span>
-                      <RiDeleteBin6Line />
-                    </span>
-                  </Link>
-                </div>
-              </li>
-            ))}
+            <div>
+              {complete.map((task, i) => (
+                <TaskCard
+                  refetch={refetch}
+                  key={task._id}
+                  i={i}
+                  handleItemDelete={handleItemDelete}
+                  task={task}
+                />
+              ))}
+            </div>
           </ul>
         </div>
       </div>

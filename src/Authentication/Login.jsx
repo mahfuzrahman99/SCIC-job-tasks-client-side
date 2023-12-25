@@ -4,7 +4,7 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import login from "../../public/Login.json";
 // import REGISTRATIONPAGEBG from "../assets/Register-job-task-management.webp";
 import swal from "sweetalert";
-import axios from "axios";
+// import axios from "axios";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -22,25 +22,6 @@ const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const captchaRef = useRef(null);
   const navigate = useNavigate();
-  // const [isOrganizer] = useOrganizer()
-//   const [isOrganizer, setOrganizer] = useState(false);
-//   const [isParticipant, setParticipant] = useState(false);
-//   const [isProfessional, setProfessional] = useState(false);
-
-//   useEffect(() => {
-//     const userRole = users.find((u) => u?.email === user?.email);
-//     console.log(userRole?.role);
-//     //Organizer
-//     if (userRole) {
-//       if (userRole.role === "Organizer") {
-//         setOrganizer(true); //Participant
-//       } else if (userRole.role === "Participant") {
-//         setParticipant(true); //Professionals
-//       } else if (userRole.role === "Professionals") {
-//         setProfessional(true);
-//       }
-//     }
-//   }, [user, users]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -51,15 +32,17 @@ const Login = () => {
     if (!disabled) {
       signInUser(email, password)
         .then(() => {
-          const user = { email };
-          axios
-            .post(
-              "https://task-management-server-side-gold.vercel.app",
-              user,
-            )
-            .then(() => {
-            navigate("/")
-            });
+          
+          navigate("/dashboard/user_profile")
+          // const user = { email };
+          // axios
+          //   .post(
+          //     "https://task-management-server-side-gold.vercel.app",
+          //     user,
+          //   )
+          //   .then(() => {
+          //   navigate("/dashboard/user_profile")
+          //   });
         })
         .catch(() => {
           swal("Error!", "Please check your email and password!", "error");

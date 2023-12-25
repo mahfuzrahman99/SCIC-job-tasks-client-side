@@ -28,7 +28,6 @@ const CreateTask = () => {
     };
     axiosPublic.post(`/task`, menuItem)
     .then(res => {
-        console.log(res.data);
         if (res.data.insertedId) {
               reset();
               Swal.fire({

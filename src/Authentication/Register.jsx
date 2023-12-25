@@ -1,5 +1,5 @@
 import registerImg from "../../public/Register.json";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useContext, useState } from "react";
 import swal from "sweetalert";
@@ -14,15 +14,10 @@ const Register = () => {
   const { createUser, updateTheProfile } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // State for captcha validation
   const [captchaValidated, setCaptchaValidated] = useState(false);
-
-//   const parentDivStyle = {
-//     backgroundImage: `url(${REGISTATIONPAGEBG})`,
-//     backgroundSize: "cover",
-//     backgroundRepeat: "no-repeat",
-//   };
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -37,13 +32,13 @@ const Register = () => {
         .then(() => {
           updateTheProfile(name, photoURL)
             .then(() => {
+              // navigate("/");
               const userInfo = { name, photoURL, password, email };
               axiosPublic.post("/users", userInfo).then((res) => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                   e.target.reset();
                   swal("Success!", "Registration Successfully!", "success");
-                  navigate("/");
+                  navigate(location?.state ? location.state : "/dashboard/user_profile");
                 }
               });
             })
